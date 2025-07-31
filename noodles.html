@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jollibee Noodles Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8e6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #f8c146;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        header a.back-home {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+        }
+        header a.back-home:hover {
+            color: #e0a800;
+        }
+        main {
+            padding: 20px;
+        }
+        h1 {
+            color: #f8c146;
+            font-size: 36px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .menu-item h3 {
+            margin: 0;
+            color: #333;
+            font-size: 24px;
+        }
+        .menu-item p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .price {
+            font-weight: bold;
+            color: #f8c146;
+            font-size: 18px;
+        }
+        .cart-button {
+            background-color: #e0a800;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .cart-button:hover {
+            background-color: #f8c146;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .cart-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .cart-items {
+            font-size: 16px;
+        }
+        .checkout-container {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        .checkout-container h2 {
+            color: #f8c146;
+        }
+        .checkout-container p {
+            font-size: 18px;
+        }
+        .checkout-button {
+            background-color: #f8c146;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .checkout-button:hover {
+            background-color: #e0a800;
+        }
+        .payment-form {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .payment-form input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index .html" class="back-home">&larr; Back to Home</a> <!-- Back to Home Link -->
+    <h1>Jollibee Noodles Menu</h1>
+    <p>Indulge in the Filipino Flavors with Jollibee's Special Noodles</p>
+</header>
+
+<main>
+    <!-- Menu Items -->
+    <div class="menu-item">
+        <div>
+            <h3>Jolly Chow Mein</h3>
+            <p>Stir-fried egg noodles with juicy chicken, crispy vegetables, and a sweet-savory sauce.</p>
+            <span class="price">$7.99</span>
+        </div>
+        <button class="cart-button" onclick="addToCart('Jolly Chow Mein', 7.99)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+        <div>
+            <h3>Jolly Spaghetti Noodles</h3>
+            <p>Classic Filipino spaghetti noodles with a sweet tomato sauce, served with Jollibee's signature hotdog and ground meat.</p>
+            <span class="price">$6.49</span>
+        </div>
+        <button class="cart-button" onclick="addToCart('Jolly Spaghetti Noodles', 6.49)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+        <div>
+            <h3>Chicken Adobo Noodles</h3>
+            <p>Filipino-inspired noodles with tender chicken adobo in a soy-vinegar sauce, topped with crispy garlic.</p>
+            <span class="price">$8.99</span>
+        </div>
+        <button class="cart-button" onclick="addToCart('Chicken Adobo Noodles', 8.99)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+        <div>
+            <h3>Pancit Palabok Noodles</h3>
+            <p>Traditional Filipino noodles with shrimp, garlic sauce, and crispy chicharrón, served with a hard-boiled egg.</p>
+            <span class="price">$9.49</span>
+        </div>
+        <button class="cart-button" onclick="addToCart('Pancit Palabok Noodles', 9.49)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+        <div>
+            <h3>Beef Stir-Fry Noodles</h3>
+            <p>Succulent beef stir-fried with noodles, vegetables, and a savory soy-based sauce.</p>
+            <span class="price">$8.49</span>
+        </div>
+        <button class="cart-button" onclick="addToCart('Beef Stir-Fry Noodles', 8.49)">Add to Cart</button>
+    </div>
+</main>
+
+<!-- Cart Container -->
+<div class="cart-container">
+    <h3>Cart</h3>
+    <div id="cart-items" class="cart-items">No items in the cart</div>
+    <p>Total: $<span id="total-price">0.00</span></p>
+    <button id="checkout-button" class="checkout-button" onclick="showCheckout()" style="display: none;">Checkout</button>
+</div>
+
+<!-- Checkout Section -->
+<div id="checkout-container" class="checkout-container">
+    <h2>Review Your Order</h2>
+    <div id="order-summary"></div>
+    <p>Total: $<span id="order-total">0.00</span></p>
+    <button class="checkout-button" onclick="proceedToPayment()">Proceed to Payment</button>
+</div>
+
+<!-- Payment Form -->
+<div id="payment-form" class="payment-form">
+    <h2>Enter Payment Information</h2>
+    <input type="text" id="card-number" placeholder="Card Number" required>
+    <input type="text" id="expiry-date" placeholder="MM/YY" required>
+    <input type="text" id="cvv" placeholder="CVV" required>
+    <button class="checkout-button" onclick="completePayment()">Complete Payment</button>
+</div>
+
+<footer>
+    <p>&copy; 2025 Jollibee Noodles | All Rights Reserved</p>
+</footer>
+
+<script>
+    let cart = [];
+
+    function addToCart(itemName, price) {
+        cart.push({ itemName, price });
+        updateCart();
+    }
+
+    function updateCart() {
+        let cartItemsContainer = document.getElementById('cart-items');
+        let totalPriceElement = document.getElementById('total-price');
+        let checkoutButton = document.getElementById('checkout-button');
+
+        // Clear current cart display
+        cartItemsContainer.innerHTML = '';
+
+        let totalPrice = 0;
+        cart.forEach(item => {
+            cartItemsContainer.innerHTML += `<p>${item.itemName} - $${item.price.toFixed(2)}</p>`;
+            totalPrice += item.price;
+        });
+
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+
+        // Show checkout button if there are items in the cart
+        if (cart.length > 0) {
+            checkoutButton.style.display = 'block';
+        } else {
+            checkoutButton.style.display = 'none';
+        }
+    }
+
+    // Show the checkout section
+    function showCheckout() {
+        let checkoutContainer = document.getElementById('checkout-container');
+        let orderSummary = document.getElementById('order-summary');
+        let totalPriceElement = document.getElementById('order-total');
+
+        // Generate order summary
+        orderSummary.innerHTML = '';
+        let totalPrice = 0;
+        cart.forEach(item => {
+            orderSummary.innerHTML += `<p>${item.itemName} - $${item.price.toFixed(2)}</p>`;
+            totalPrice += item.price;
+        });
+
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+
+        // Show checkout section
+        checkoutContainer.style.display = 'block';
+    }
+
+    // Proceed to the payment form
+    function proceedToPayment() {
+        let checkoutContainer = document.getElementById('checkout-container');
+        let paymentForm = document.getElementById('payment-form');
+
+        // Hide checkout and show payment form
+        checkoutContainer.style.display = 'none';
+        paymentForm.style.display = 'block';
+    }
+
+    // Simulate completing the payment
+    function completePayment() {
+        let cardNumber = document.getElementById('card-number').value;
+        let expiryDate = document.getElementById('expiry-date').value;
+        let cvv = document.getElementById('cvv').value;
+
+        // Validate the payment form
+        if (!cardNumber || !expiryDate || !cvv) {
+            alert("Please fill in all payment details.");
+            return;
+        }
+
+        // Simulate payment success
+        alert("Payment Successful! Thank you for your order.");
+
+        // Clear the cart and reset UI
+        cart = [];
+        updateCart();
+
+        // Hide payment form and show a thank-you message
+        let paymentForm = document.getElementById('payment-form');
+        paymentForm.style.display = 'none';
+
+        let thankYouMessage = document.createElement('div');
+        thankYouMessage.innerHTML = "<h2>Thank you for your order! Your noodles are on the way!</h2>";
+        thankYouMessage.style.textAlign = 'center';
+        thankYouMessage.style.marginTop = '50px';
+        document.body.appendChild(thankYouMessage);
+    }
+</script>
+
+</body>
+</html>

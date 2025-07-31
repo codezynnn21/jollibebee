@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jollibee Delivery Clone</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff8f0;
+    }
+
+    header {
+      background-color: #ff6600;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .menu-bar {
+      background-color: #ff9933;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .menu-bar a {
+      margin: 0 10px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      padding: 20px;
+    }
+
+    .sidebar {
+      width: 25%;
+      padding: 10px;
+    }
+
+    .content {
+      width: 75%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .item {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .price {
+      color: #cc0000;
+      font-weight: bold;
+    }
+
+    button {
+      background: linear-gradient(to right, #ff6600, #ff3300);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #ff8533, #ff1a1a);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .modal-content img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .modal-content h3 {
+      margin: 10px 0 5px;
+    }
+
+    .modal-content select,
+    .modal-content input {
+      padding: 8px;
+      margin: 10px;
+      width: 80%;
+    }
+
+    .modal-content button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      background: #ff6600;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background: #ff3300;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Jollibebe Delivery</div>
+  <nav>
+    <a href="my account .html">My Account</a>
+    <a href="my tray.html">My Tray</a>
+    <a href="checkout .html">Checkout</a>
+    <a href="login .html">Login</a>
+  </nav>
+</header>
+
+<div class="menu-bar">
+  <a href="index .html">ALL</a>
+  <a href="value meals.html">VALUE MEALS</a>
+  <a href="burger.html">BURGERS</a>
+  <a href="noodles.html">NOODLES</a>
+  <a href="chicken .html">CHICKEN</a>
+  <a href="rice.html">RICE</a>
+  <a href="sandwich .html">SANDWICHES</a>
+  <a href="dessert .html">DESSERTS</a>
+  <a href="breakfast .html">BREAKFAST</a>
+  <a href="kids.html">KIDS</a>
+</div>
+
+<div class="container">
+  <div class="sidebar">
+    <h3>My Food Tray</h3>
+    <p>You have no items in your food tray.</p>
+  </div>
+
+  <div class="content">
+    <div class="item">
+      <img src="yum burger.jpeg" alt="Yum Burger">
+      <h4>Yum - Value Meal</h4>
+      <p class="price">Php66.00</p>
+      <button onclick="showModal('Yum - Value Meal', 66.00, 'https://via.placeholder.com/200x120')">Select Options</button>
+    </div>
+    <div class="item">
+      <img src="spaghetti.jpeg" alt="Spaghetti">
+      <h4>Jollibee Spaghetti - Value Meal</h4>
+      <p class="price">Php55.00</p>
+      <button onclick="showModal('Jollibee Spaghetti - Value Meal', 55.00, 'https://via.placeholder.com/200x120')">Select Options</button>
+    </div>
+    <div class="item">
+      <img src="palabok fiesta.jpeg" alt="Palabok">
+      <h4>Palabok Fiesta - Value Meal</h4>
+      <p class="price">Php79.20</p>
+      <button onclick="showModal('Palabok Fiesta - Value Meal', 79.20, 'https://via.placeholder.com/200x120')">Select Options</button>
+    </div>
+    <div class="item">
+      <img src="beef tapa meal.jpeg" alt="Beef with Mushrooms">
+      <h4>Beef with Mushrooms - Value Meal</h4>
+      <p class="price">Php60.50</p>
+      <button onclick="showModal('Beef with Mushrooms - Value Meal', 60.50, 'https://via.placeholder.com/200x120')">Select Options</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <img id="modalItemImg" src="" alt="Item Preview">
+    <h3 id="modalItemName">Item Name</h3>
+    <p id="modalBasePrice">Base Price: Php0.00</p>
+
+    <label>Quantity:</label>
+    <input type="number" id="itemQty" value="1" min="1">
+
+    <label>Add a Drink:</label>
+    <select id="itemAddon">
+      <option value="0">No Drink</option>
+      <option value="20">+ Php20 - Coke</option>
+      <option value="25">+ Php25 - Sprite</option>
+      <option value="30">+ Php30 - Pineapple Juice</option>
+    </select>
+
+    <p><strong>Total: <span id="modalTotal">Php0.00</span></strong></p>
+
+    <button onclick="confirmAddToTray()">Add to Tray</button>
+    <button onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<script>
+  let cart = [];
+  let selectedItem = null;
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCartDisplay();
+  }
+
+  function updateCartDisplay() {
+    const sidebar = document.querySelector(".sidebar");
+    if (cart.length === 0) {
+      sidebar.innerHTML = `<h3>My Food Tray</h3><p>You have no items in your food tray.</p>`;
+      return;
+    }
+
+    let html = `<h3>My Food Tray</h3><ul>`;
+    let total = 0;
+    cart.forEach(item => {
+      html += `<li>${item.name} - Php${item.price.toFixed(2)}</li>`;
+      total += item.price;
+    });
+    html += `</ul><p><strong>Total: Php${total.toFixed(2)}</strong></p>`;
+    html += `<button onclick="checkout()">Order Now</button>`;
+    sidebar.innerHTML = html;
+  }
+
+  function checkout() {
+    alert("Thank you for your order! 🍔\nTotal: Php" + cart.reduce((sum, item) => sum + item.price, 0).toFixed(2));
+    cart = [];
+    updateCartDisplay();
+  }
+
+  function showModal(name, price, imageUrl) {
+    selectedItem = { name, basePrice: price, image: imageUrl };
+
+    document.getElementById("modalItemName").textContent = name;
+    document.getElementById("modalBasePrice").textContent = `Base Price: Php${price.toFixed(2)}`;
+    document.getElementById("modalItemImg").src = imageUrl;
+    document.getElementById("itemQty").value = 1;
+    document.getElementById("itemAddon").value = 0;
+
+    updateTotalPrice();
+    document.getElementById("myModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+
+  function updateTotalPrice() {
+    const qty = parseInt(document.getElementById("itemQty").value);
+    const addon = parseFloat(document.getElementById("itemAddon").value);
+    const total = (selectedItem.basePrice + addon) * qty;
+    document.getElementById("modalTotal").textContent = "Php" + total.toFixed(2);
+  }
+
+  document.getElementById("itemQty").addEventListener("input", updateTotalPrice);
+  document.getElementById("itemAddon").addEventListener("change", updateTotalPrice);
+
+  function confirmAddToTray() {
+    const qty = parseInt(document.getElementById("itemQty").value);
+    const addon = parseFloat(document.getElementById("itemAddon").value);
+    const totalPrice = (selectedItem.basePrice + addon) * qty;
+    const itemName = `${selectedItem.name} x${qty}${addon > 0 ? ' + Drink' : ''}`;
+    addToCart(itemName, totalPrice);
+    closeModal();
+  }
+</script>
+
+</body>
+</html>

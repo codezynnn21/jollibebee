@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jollibee Desserts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d81b60;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .menu-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .item-details {
+      padding: 15px;
+    }
+
+    .item-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #d81b60;
+    }
+
+    .item-price {
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .order-btn {
+      background: #d81b60;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .order-btn:hover {
+      background: #b3134c;
+    }
+
+    .cart {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .cart h2 {
+      text-align: center;
+      color: #d81b60;
+    }
+
+    .cart-items {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cart-items li {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+
+    .cart-total {
+      font-weight: bold;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .checkout-btn {
+      margin-top: 10px;
+      background: #4caf50;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background: #388e3c;
+    }
+
+    @media (max-width: 768px) {
+      .cart {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<a href="index .html" class="back-home">&larr; Back to Home</a> <!-- Back to Home Link -->
+  <h1>Jollibee Desserts Menu</h1>
+
+  <div class="menu">
+    <div class="menu-item" data-name="Peach Mango Pie" data-price="39">
+      <img src="peach mango pie.jpeg" alt="Peach Mango Pie">
+      <div class="item-details">
+        <div class="item-name">Peach Mango Pie</div>
+        <div class="item-price">₱39.00</div>
+        <button class="order-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Chocolate Sundae" data-price="30">
+      <img src="chocolate sundua.jpeg" alt="Chocolate Sundae">
+      <div class="item-details">
+        <div class="item-name">Chocolate Sundae</div>
+        <div class="item-price">₱30.00</div>
+        <button class="order-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Strawberry Sundae" data-price="32">
+      <img src="strawberry sundae.jpeg" alt="Strawberry Sundae">
+      <div class="item-details">
+        <div class="item-name">Strawberry Sundae</div>
+        <div class="item-price">₱32.00</div>
+        <button class="order-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Halo-Halo Sundae" data-price="55">
+      <img src="Halo halo.jpeg" alt="Halo-Halo Sundae">
+      <div class="item-details">
+        <div class="item-name">Halo-Halo Sundae</div>
+        <div class="item-price">₱55.00</div>
+        <button class="order-btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart" id="cart">
+    <h2>Your Cart</h2>
+    <ul class="cart-items" id="cart-items">
+      <li>Your cart is empty.</li>
+    </ul>
+    <div class="cart-total" id="cart-total">Total: ₱0.00</div>
+    <button class="checkout-btn" id="checkout-btn" disabled>Checkout</button>
+  </div>
+
+  <script>
+    const cart = [];
+
+    function updateCart() {
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartTotalEl = document.getElementById('cart-total');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      cartItemsEl.innerHTML = '';
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<li>Your cart is empty.</li>';
+        cartTotalEl.textContent = 'Total: ₱0.00';
+        checkoutBtn.disabled = true;
+        return;
+      }
+
+      let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} x${item.qty}`;
+        const span = document.createElement('span');
+        span.textContent = `₱${(item.price * item.qty).toFixed(2)}`;
+        li.appendChild(span);
+        cartItemsEl.appendChild(li);
+        total += item.price * item.qty;
+      });
+
+      cartTotalEl.textContent = `Total: ₱${total.toFixed(2)}`;
+      checkoutBtn.disabled = false;
+    }
+
+    function addToCart(name, price) {
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      alert(`${name} added to cart!`);
+      updateCart();
+    }
+
+    function checkout() {
+      if (cart.length === 0) return;
+
+      let summary = 'Order Summary:\n\n';
+      let total = 0;
+
+      cart.forEach(item => {
+        summary += `${item.name} x${item.qty} = ₱${(item.qty * item.price).toFixed(2)}\n`;
+        total += item.price * item.qty;
+      });
+
+      summary += `\nTotal: ₱${total.toFixed(2)}\n\nThank you for your order!`;
+      alert(summary);
+      cart.length = 0;
+      updateCart();
+    }
+
+    document.querySelectorAll('.order-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.menu-item');
+        const name = item.getAttribute('data-name');
+        const price = parseFloat(item.getAttribute('data-price'));
+        addToCart(name, price);
+      });
+    });
+
+    document.getElementById('checkout-btn').addEventListener('click', checkout);
+  </script>
+
+</body>
+</html>

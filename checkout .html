@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout</title>
+</head>
+<body>
+  <h1>Checkout Page</h1>
+  <div id="order-summary"></div>
+
+  <script>
+    // Get the order summary from URL query params or localStorage and display it
+    const params = new URLSearchParams(window.location.search);
+    const summary = params.get('summary');
+
+    if (summary) {
+      document.getElementById('order-summary').innerText = decodeURIComponent(summary);
+    } else {
+      document.getElementById('order-summary').innerText = 'No order data found.';
+    }
+  </script>
+</body>
+</html>

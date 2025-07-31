@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jollibee Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff0e6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding-top: 50px;
+      color: #d84315;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(216, 67, 21, 0.3);
+      max-width: 400px;
+      width: 90%;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 2px solid #f57c00;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #d84315;
+      outline: none;
+    }
+
+    button {
+      background-color: #d84315;
+      color: white;
+      font-size: 18px;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b13611;
+    }
+
+    .toggle-link {
+      margin-top: 15px;
+      text-align: center;
+      color: #f57c00;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+    }
+
+    .error-msg {
+      color: #b71c1c;
+      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="login-container">
+    <h2>Jollibee Login</h2>
+    <form id="login-form">
+      <label for="login-email">Email:</label>
+      <input type="email" id="login-email" required placeholder="your.email@example.com" />
+      <label for="login-password">Password:</label>
+      <input type="password" id="login-password" required placeholder="Enter password" />
+      <div class="error-msg" id="login-error"></div>
+      <button type="submit">Login</button>
+    </form>
+    <div class="toggle-link" id="show-register">Don't have an account? Register</div>
+  </div>
+
+  <div class="container" id="register-container" style="display:none;">
+    <h2>Jollibee Register</h2>
+    <form id="register-form">
+      <label for="register-name">Full Name:</label>
+      <input type="text" id="register-name" required placeholder="Your full name" />
+      <label for="register-email">Email:</label>
+      <input type="email" id="register-email" required placeholder="your.email@example.com" />
+      <label for="register-password">Password:</label>
+      <input type="password" id="register-password" required placeholder="Enter password" />
+      <label for="register-confirm-password">Confirm Password:</label>
+      <input type="password" id="register-confirm-password" required placeholder="Confirm password" />
+      <div class="error-msg" id="register-error"></div>
+      <button type="submit">Register</button>
+    </form>
+    <div class="toggle-link" id="show-login">Already have an account? Login</div>
+  </div>
+
+  <script>
+    const loginContainer = document.getElementById('login-container');
+    const registerContainer = document.getElementById('register-container');
+
+    const showRegisterLink = document.getElementById('show-register');
+    const showLoginLink = document.getElementById('show-login');
+
+    showRegisterLink.addEventListener('click', () => {
+      loginContainer.style.display = 'none';
+      registerContainer.style.display = 'block';
+    });
+
+    showLoginLink.addEventListener('click', () => {
+      registerContainer.style.display = 'none';
+      loginContainer.style.display = 'block';
+    });
+
+    // Login form submit
+    document.getElementById('login-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      const loginError = document.getElementById('login-error');
+      loginError.textContent = '';
+
+      // Basic validation
+      if (!email || !password) {
+        loginError.textContent = 'Please enter both email and password.';
+        return;
+      }
+
+      // Fake login success
+      alert(`Welcome back, ${email}!`);
+      // Clear form
+      e.target.reset();
+    });
+
+    // Register form submit
+    document.getElementById('register-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('register-name').value.trim();
+      const email = document.getElementById('register-email').value.trim();
+      const password = document.getElementById('register-password').value;
+      const confirmPassword = document.getElementById('register-confirm-password').value;
+
+      const registerError = document.getElementById('register-error');
+      registerError.textContent = '';
+
+      if (!name || !email || !password || !confirmPassword) {
+        registerError.textContent = 'All fields are required.';
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        registerError.textContent = 'Passwords do not match.';
+        return;
+      }
+
+      // Fake registration success
+      alert(`Thank you for registering, ${name}! You can now login.`);
+      e.target.reset();
+
+      // Switch to login form
+      registerContainer.style.display = 'none';
+      loginContainer.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>

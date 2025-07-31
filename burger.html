@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jollibee Burgers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF8F0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #E60012;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 150px;
+        }
+
+        .burger-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .burger-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            height: 450px;
+        }
+
+        .burger-item img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #E60012;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        p {
+            color: #777;
+        }
+
+        .add-to-cart-btn {
+            background-color: #F4B400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #FF9800;
+        }
+
+        #cart {
+            background-color: #E60012;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            font-size: 18px;
+            width: 300px;
+            border-radius: 5px;
+            display: none;
+            text-align: center;
+        }
+
+        #cart h4 {
+            margin: 0;
+            padding-bottom: 10px;
+        }
+
+        #cart ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #cart ul li {
+            padding: 5px 0;
+        }
+
+        #cart .cart-btn {
+            background-color: #F4B400;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Jollibee Burgers</h1>
+        <p>Deliciously Juicy, Perfectly Grilled - Only at Jollibee!</p>
+        <a href="index .html" class="back-home">&larr; Back to Home</a> <!-- Back to Home Link -->
+    </header>
+
+    <div class="burger-section">
+        <!-- Jolly Burger -->
+        <div class="burger-item" data-name="Jolly Burger" data-price="5.99">
+            <img src="images (8).jpeg" alt="Jolly Burger">
+            <h3>Jolly Burger</h3>
+            <p>Our signature burger with a juicy patty, served on a soft bun. A true classic!</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Jolly Burger', 5.99)">Add to Cart - $5.99</button>
+        </div>
+        <!-- Cheesy Burger -->
+        <div class="burger-item" data-name="Cheesy Burger" data-price="6.49">
+            <img src="chessy yum Burger.jpeg" alt="Cheesy Burger">
+            <h3>Cheesy Burger</h3>
+            <p>A burger with a cheesy twist! Melted cheese paired with the tender Jollibee patty.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Cheesy Burger', 6.49)">Add to Cart - $6.49</button>
+        </div>
+        <!-- Burger Steak -->
+        <div class="burger-item" data-name="Burger Steak" data-price="7.99">
+            <img src="burger steak meal.jpeg" alt="Burger Steak">
+            <h3>Burger Steak</h3>
+            <p>Juicy burger patties served with savory mushroom gravy. A delicious comfort food!</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Burger Steak', 7.99)">Add to Cart - $7.99</button>
+        </div>
+
+        <!-- New Burger Items -->
+        <div class="burger-item" data-name="Chicken Burger" data-price="6.99">
+            <img src="images (5).jpeg" alt="Chicken Burger">
+            <h3>Chicken Burger</h3>
+            <p>Crispy chicken fillet served on a soft bun with lettuce and mayo. A crispy delight!</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Chicken Burger', 6.99)">Add to Cart - $6.99</button>
+        </div>
+        <div class="burger-item" data-name="Bacon Burger" data-price="7.49">
+            <img src="bacon cheeseburger.jpeg" alt="Bacon Burger">
+            <h3>Bacon Burger</h3>
+            <p>Juicy beef patty topped with crispy bacon, cheese, and BBQ sauce for a smoky flavor.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Bacon Burger', 7.49)">Add to Cart - $7.49</button>
+        </div>
+        <div class="burger-item" data-name="Double Burger" data-price="8.49">
+            <img src="images (7).jpeg" alt="Double Burger">
+            <h3>Double Burger</h3>
+            <p>Double the patty, double the flavor! Two juicy patties stacked with fresh veggies and sauce.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Double Burger', 8.49)">Add to Cart - $8.49</button>
+        </div>
+
+        <!-- New Burgers Added Below -->
+
+        <!-- Spicy Chicken Burger -->
+        <div class="burger-item" data-name="Spicy Chicken Burger" data-price="7.49">
+            <img src="spicy chicken sandwiths.jpeg" alt="Spicy Chicken Burger">
+            <h3>Spicy Chicken Burger</h3>
+            <p>A spicy crispy chicken fillet topped with jalapeños, mayo, and lettuce.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Spicy Chicken Burger', 7.49)">Add to Cart - $7.49</button>
+        </div>
+
+        <!-- Mushroom Swiss Burger -->
+        <div class="burger-item" data-name="Mushroom Swiss Burger" data-price="8.49">
+            <img src="images (6).jpeg" alt="Mushroom Swiss Burger">
+            <h3>Mushroom Swiss Burger</h3>
+            <p>A juicy beef patty topped with creamy Swiss cheese and savory mushroom sauce.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Mushroom Swiss Burger', 8.49)">Add to Cart - $8.49</button>
+        </div>
+
+        <!-- Veggie Burger -->
+        <div class="burger-item" data-name="Veggie Burger" data-price="6.99">
+            <img src="images (14).jpeg" alt="Veggie Burger">
+            <h3>Veggie Burger</h3>
+            <p>A delicious veggie patty with fresh lettuce, tomato, and a tangy sauce.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Veggie Burger', 6.99)">Add to Cart - $6.99</button>
+        </div>
+
+        <!-- BBQ Chicken Burger -->
+        <div class="burger-item" data-name="BBQ Chicken Burger" data-price="7.99">
+            <img src="images (11).jpeg" alt="BBQ Chicken Burger">
+            <h3>BBQ Chicken Burger</h3>
+            <p>A crispy chicken fillet topped with BBQ sauce, lettuce, and cheese.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('BBQ Chicken Burger', 7.99)">Add to Cart - $7.99</button>
+        </div>
+
+        <!-- Garlic Burger -->
+        <div class="burger-item" data-name="Garlic Burger" data-price="7.49">
+            <img src="images (11).jpeg" alt="Garlic Burger">
+            <h3>Garlic Burger</h3>
+            <p>A garlic-infused patty served with a rich garlic mayo sauce and fresh veggies.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Garlic Burger', 7.49)">Add to Cart - $7.49</button>
+        </div>
+
+        <!-- Hawaiian Burger -->
+        <div class="burger-item" data-name="Hawaiian Burger" data-price="7.99">
+            <img src="images (14).jpeg" alt="Hawaiian Burger">
+            <h3>Hawaiian Burger</h3>
+            <p>A sweet and savory burger with pineapple slices, grilled ham, and a juicy beef patty.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Hawaiian Burger', 7.99)">Add to Cart - $7.99</button>
+        </div>
+
+        <!-- Ultimate Bacon Burger -->
+        <div class="burger-item" data-name="Ultimate Bacon Burger" data-price="9.49">
+            <img src="images (14).jpeg" alt="Ultimate Bacon Burger">
+            <h3>Ultimate Bacon Burger</h3>
+            <p>A double beef patty topped with crispy bacon, lettuce, cheese, and a smoky BBQ sauce.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Ultimate Bacon Burger', 9.49)">Add to Cart - $9.49</button>
+        </div>
+    </div>
+
+    <div id="cart">
+        <h4>Your Cart</h4>
+        <ul id="cart-items">
+            <!-- Cart items will appear here -->
+        </ul>
+        <p class="total-price">Total: $<span id="total-price">0.00</span></p>
+        <button class="cart-btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jollibee Foods Corporation. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let totalPrice = 0;
+
+        // Function to add items to the cart
+        function addToCart(name, price) {
+            // Add the item to the cart array
+            cart.push({ name, price });
+
+            // Update total price
+            totalPrice += price;
+
+            // Update cart display
+            updateCartDisplay();
+        }
+
+        // Function to update the cart display
+        function updateCartDisplay() {
+            const cartContainer = document.getElementById('cart');
+            const cartItemsList = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+
+            // Show cart if it has items
+            if (cart.length > 0) {
+                cartContainer.style.display = 'block';
+            } else {
+                cartContainer.style.display = 'none';
+            }
+
+            // Clear previous cart items
+            cartItemsList.innerHTML = '';
+
+            // Add each item to the cart list
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItemsList.appendChild(li);
+            });
+
+            // Update the total price
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        // Function to handle checkout
+        function checkout() {
+            alert(`Proceeding to checkout. Total: $${totalPrice.toFixed(2)}`);
+            cart = []; // Clear the cart after checkout
+            totalPrice = 0; // Reset the total price
+            updateCartDisplay(); // Update the cart display
+        }
+    </script>
+
+</body>
+</html>
